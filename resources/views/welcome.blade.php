@@ -22,7 +22,7 @@
                 @if (Route::has('login'))
                 <div class="flex gap-5">
                     @auth
-                    <a href="{{ url('/home') }}">
+                    <a href="{{ url('/post') }}">
                         Home
                     </a>
                     @else

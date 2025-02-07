@@ -24,7 +24,7 @@ class PostController extends Controller
     {
         $user = User::find(auth()->id());
         $user->post()->get();
-        return view('create',compact('user'));
+        return view('create', compact('user'));
     }
 
     /**
@@ -41,7 +41,7 @@ class PostController extends Controller
             'content' => $validated['content'],
         ]);
         // Post::create($validated);
-        return redirect()->route('home');
+        return redirect()->route('post.index');
     }
 
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -14,7 +15,9 @@ Route::get('/home', [PostController::class, 'index'])->middleware(['auth', 'veri
 
 Route::resource('/post', PostController::class)->middleware(['auth', 'verified']);
 
-//showPostController route
+//LikeController
+Route::post('/post/{post}/toggle-like', [LikeController::class, 'toggleLike'])->name('post.toggleLike')->middleware('auth');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

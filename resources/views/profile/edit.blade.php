@@ -9,10 +9,40 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
+                    <!-- Display current profile image if available -->
+                    @if(auth()->user()->profile_image)
+                        <div>
+                            <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image"
+                                style="max-width:150px;">
+                        </div>
+                    @endif
+
+                    <!-- Form to update profile image -->
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT') <!-- Use PUT or PATCH for updates -->
+
+                        <div>
+                            <label for="profile_image">Upload Profile Image:</label>
+                            <input type="file" name="profile_image" id="profile_image" accept="image/*" required>
+                        </div>
+
+                        <!-- Display validation errors -->
+                        @error('profile_image')
+                            <div style="color:red;">{{ $message }}</div>
+                        @enderror
+
+                        <div>
+                            <x-primary-button>{{ __('Upload') }}</x-primary-button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
                 </div>
             </div>
-
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-password-form')

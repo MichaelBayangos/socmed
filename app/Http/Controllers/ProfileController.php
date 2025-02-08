@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Storage;
 
 class ProfileController extends Controller
 {
@@ -56,5 +57,26 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    // image_profile upload function
+    public function image_profile(Request $request)
+    {
+        $request->validate([
+            'profile_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+        if ($request->hasFile('profile_image')) {
+            if ($user->profile_image && Storage::disk('public')->exists($user->profile_image)) {
+                Storage::disk('public')->delete($user->profile_image);
+            }
+
+            $path = $request->file('profile_image')->store('profile_images', 'public');
+            $user->profile_image = $path;
+            $user->save();
+            return redirect()->route('profile.edit')->with('success', 'profile-image-updated');
+        }
+        return redirect()->route('profile.edit')->with('error', 'profile-image-not-updated');
     }
 }

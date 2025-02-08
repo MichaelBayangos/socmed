@@ -1,6 +1,6 @@
-<div>
+<div wire:poll.3000ms>
     <ul>
-        @foreach ($posts as $post)
+        @foreach ($posts->reverse() as $post)
             <li class="mb-2">
                 <div class="w-full mt-4 flex justify-center items-center">
                     <div class="w-[60%] bg-white p-8 rounded-lg shadow-lg overflow-hidden">

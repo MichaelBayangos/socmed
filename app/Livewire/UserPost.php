@@ -12,27 +12,33 @@ class UserPost extends Component
     public $user;
     public $posts;
 
+    /**
+     * The mount method is Livewire's equivalent of a constructor. It is called when the component is first initialized.
+     * In this case, it finds the authenticated user and loads all their posts into a public property.
+     */
     public function mount()
     {
-        // Find the authenticated user
         $this->user = User::find(auth()->id());
-
-        // Assuming your User model has a "post" relationship that returns multiple posts,
-        // assign the retrieved posts to a public property.
         $this->posts = $this->user->post()->get();
     }
+
+    /**
+     * Toggles the like status of a post for the authenticated user.
+     *
+     * @param int $postId The ID of the post to toggle the like.
+     *
+     * If the user has already liked the post, the like will be removed.
+     * If the user has not liked the post, a new like will be added.
+     */
 
     public function toggleLike($postId)
     {
         $post = Post::find($postId);
         $user = auth()->user();
 
-        // Check if the user already liked the post.
         if ($post->likes->where('user_id', $user->id)->first()) {
-            // Remove the like (adjust this code based on your like relationship logic)
             $post->likes()->where('user_id', $user->id)->delete();
         } else {
-            // Add a like. Ensure your likes relationship is set up to allow creation.
             $post->likes()->create([
                 'user_id' => $user->id,
             ]);
@@ -43,3 +49,4 @@ class UserPost extends Component
         return view('livewire.user-post');
     }
 }
+

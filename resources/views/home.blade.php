@@ -18,7 +18,7 @@
         </div>
     </form>
     <div id="posts-container">
-        @include('partial.posts', ['posts' => $posts])
+        <livewire:post-list />
     </div>
     <div class="w-full mt-4 flex justify-center items-center">
         <div class="w-[60%] p-8 rounded-lg shadow-lg overflow-hidden">

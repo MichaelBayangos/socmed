@@ -41,7 +41,7 @@ class PostController extends Controller
             'content' => $validated['content'],
         ]);
         // Post::create($validated);
-        return redirect()->route('post.index');
+        return back();
     }
 
     /**

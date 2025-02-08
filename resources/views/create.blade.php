@@ -17,23 +17,5 @@
             </div>
         </div>
     </form>
-    <ul>
-        @foreach ($user->post as $post)
-            <li class="mb-2">
-                <div class="w-full mt-4 flex justify-center items-center">
-                    <div class="w-[60%]  bg-white p-8 rounded-lg shadow-lg overflow-hidden">
-                        <div class="ml-4 mb-2">
-                            <h2 class="font-semibold text-lg">{{$post->user->name}}</h2>
-                            <p class="text-black text-sm">{{$post->created_at->format('D, F, Y')}}</p>
-                        </div>
-                        <div class="px-4 pb-4">
-                            <p>
-                                {{$post->content}}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </li>
-        @endforeach
-    </ul>
+    <livewire:user-post :user="$user"/>
 </x-app-layout>

@@ -12,8 +12,6 @@ Route::get('/', function () {
 // Post Controller 
 Route::resource('/post', PostController::class)->middleware(['auth', 'verified']);
 
-//LikeController
-Route::post('/post/{post}/toggle-like', [LikeController::class, 'toggleLike'])->name('post.toggleLike')->middleware('auth');
 
 // ProfileController
 Route::middleware('auth')->group(function () {

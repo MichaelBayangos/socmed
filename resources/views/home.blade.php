@@ -17,9 +17,7 @@
             </div>
         </div>
     </form>
-    <div id="posts-container">
-        <livewire:post-list />
-    </div>
+    <livewire:post-list />
     <div class="w-full mt-4 flex justify-center items-center">
         <div class="w-[60%] p-8 rounded-lg shadow-lg overflow-hidden">
             <div class="ml-4 mb-2">

@@ -25,4 +25,8 @@ class Post extends Model
         return $this->morphMany(Like::class, 'likeable');
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

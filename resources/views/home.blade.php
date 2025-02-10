@@ -10,7 +10,7 @@
                     <span class="col-span-2"></span>
                     <span class="col-span-2"></span>
                     <button type="submit"
-                        class="bg-blue-700 text-white col-span-2 flex justify-center rounded-lg p-2 duration-300focus:bg-blue-400">
+                        class="bg-blue-700 text-white col-span-2 flex justify-center rounded-lg p-2 duration-300fo  cus:bg-blue-400">
                         Post
                     </button>
                 </div>

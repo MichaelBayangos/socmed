@@ -41,6 +41,12 @@ class PostList extends Component
         // Reload posts so the view reflects the updated likes count.
         $this->loadPosts();
     }
+    
+    // Method to filter posts by a specific user.
+    public function showUserPosts($userId)
+    {
+        $this->posts = Post::where('user_id', $userId)->with(['user', 'likes'])->orderBy('id', 'desc')->get();
+    }
     public function render()
     {
         return view('livewire.post-list');

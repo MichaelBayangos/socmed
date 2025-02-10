@@ -13,7 +13,12 @@
                     @if(auth()->user()->profile_image)
                         <div>
                             <img src="{{ asset('storage/' . auth()->user()->profile_image) }}" alt="Profile Image"
-                                style="max-width:150px;">
+                                class="w-auto h-[150px] rounded-full">
+                        </div>
+                    @else
+                        <div v>
+                            <img src="{{ asset('images/blank-profile-picture.png') }}" alt="Profile Image"
+                                class="w-auto h-[150px] rounded-full">
                         </div>
                     @endif
 
@@ -23,8 +28,8 @@
                         @method('PUT') <!-- Use PUT or PATCH for updates -->
 
                         <div>
-                            <label for="profile_image">Upload Profile Image:</label>
-                            <input type="file" name="profile_image" id="profile_image" accept="image/*" required>
+                            <input type="file" name="profile_image" id="profile_image" accept="image/*"
+                                class="mb-4 mt-4" required>
                         </div>
 
                         <!-- Display validation errors -->

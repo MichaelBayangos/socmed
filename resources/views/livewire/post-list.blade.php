@@ -34,6 +34,12 @@
                     <span>
                         {{ $post->likes->count() }}
                     </span>
+                    <a href="{{route('post.show', ['post' => $post->id])}}">
+                        <span>💬</span>
+                        <span>
+                            {{ $post->comments->count() }}
+                        </span>
+                    </a>
                 </div>
             </div>
         </div>

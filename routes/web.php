@@ -12,6 +12,7 @@ Route::get('/', function () {
 // Post Controller 
 Route::resource('/post', PostController::class)->middleware(['auth', 'verified']);
 
+// comments
 
 // ProfileController
 Route::middleware('auth')->group(function () {

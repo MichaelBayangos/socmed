@@ -44,6 +44,7 @@ class UserPost extends Component
             ]);
         }
     }
+
     public function render()
     {
         return view('livewire.user-post');

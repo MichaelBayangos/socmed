@@ -12,22 +12,27 @@ class Comments extends Component
     public $content;
 
     protected $rules = [
-        'content' => 'required|min:3'
+        'content' => 'required'
     ];
 
     public function addComment()
     {
         $this->validate();
 
-        $this->post->comments()->create([
+        Comment::query()->create([
             'content' => $this->content,
             'user_id' => auth()->id(),
+            'post_id' => $this->post->id,
         ]);
 
         $this->reset('content');
+    }   
+
+    public function delete(Comment $comment)
+    {
+        // Delete the comment
+        $comment->Delete();
     }
-
-
 
     public function render()
     {

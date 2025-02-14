@@ -1,7 +1,7 @@
 <x-app-layout title="Comments">
     <div class="w-full mt-4 mb-4 flex justify-center items-center">
         <div class="w-[60%] bg-white p-8 rounded-lg shadow-lg overflow-hidden">
-            <div class="flex justify-start items-center gap-2">
+            <div class="flex justify-start items-center gap-2 mb-2">
                 @if ($post->user->profile_image)
                     <img src="{{ asset('storage/' . $post->user->profile_image) }}" alt="" class="w-12 h-12 rounded-full">
                 @else
@@ -22,8 +22,9 @@
                     Comments
                 </p>
             </div>
+            <hr>
             <div class="px-4 pb-4">
-                <livewire:comments :post="$post" />
+                <livewire:comments :post="$post" content="" />
             </div>
         </div>
     </div>

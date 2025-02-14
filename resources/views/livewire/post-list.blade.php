@@ -1,5 +1,4 @@
-<!-- Using wire:poll will auto-refresh this component every 10 seconds -->
-<div wire:poll.3000ms>
+<div wire:poll.10000ms>
     @foreach ($posts as $post)
         <div class="w-full mt-4 flex justify-center items-center">
             <div class="w-[60%] bg-white p-8 rounded-lg shadow-lg overflow-hidden">

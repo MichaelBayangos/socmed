@@ -58,7 +58,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        return view('create', [
+            'post' => Post::findOrFail($id),
+            'user' => User::where('content')->get()
+        ]);
     }
 
     /**
@@ -66,7 +69,15 @@ class PostController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'content' => 'required|string'
+        ]);
+
+        if ($post = Post::find($id)) {
+            $post->update(['content' => $validated['content']]);
+        }
+
+        return redirect()->route('post.create');
     }
 
     /**
@@ -74,6 +85,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        return back();
     }
 }
